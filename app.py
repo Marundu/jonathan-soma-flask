@@ -22,16 +22,9 @@ class School(db.Model):
 
 @app.route('/')
 def hello():
-    print('The total number of schools is ', School.query.count())
-    school=School.query.filter_by(LOC_CODE='X270').first()
-    print('The school name is', school.SCHOOLNAME)
-    
-    zip_schools=School.query.filter_by(ZIP='10466').all()
-    
-    for zip_school in zip_schools:
-        print(zip_school.SCHOOLNAME)
-    
-    return render_template('index.html')
+    school_count=School.query.count()
+    zip_schools=School.query.filter_by(ZIP='10466').all()  
+    return render_template('index.html', count=school_count, schools=zip_schools)
 
 
 @app.route('/about')

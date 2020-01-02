@@ -10,12 +10,15 @@
     </nav>
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-4">Hello, Master Flasker!</h1>
+        <h1 class="display-4">There are {{ count }} in New York City.</h1>
         <p class="lead">Confusion is normal.</p>
       </div>
     </div>
     <div class="container">
       <p>Keep going!</p>
+        {% for school in schools %}
+          <p>{{ school.SCHOOLNAME }}</p>
+        {% endfor %}
     </div>
   </div>
   </body>
