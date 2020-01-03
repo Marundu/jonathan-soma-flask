@@ -1,25 +1,21 @@
-<DOCTYPE html>
-<html>
-  <head>
-    <title>Flask SQLAlchemy Mapbox Tutorial</title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Flask SQLAlchemy Mapbox Tutorial</a>
-    </nav>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-4">There are {{ count }} cities in New York City.</h1>
-      </div>
-    </div>
-    <div class="container">
-      <p>
-        {% for city in cities %}
-          <p><a href="/city/{{ city.lower().replace(' ', '-') }}">{{ city.title() }}</a></p>
-        {% endfor %}
-      </p>
-    </div>
+{% extends "layout.html" %}
+
+{% block headline %}
+
+  There are {{ count }} borroughs in New York City.
+
+{% endblock %}
+
+{% block subhead %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    {% for city in cities %}
+      <p><a href="/city/{{ city.lower().replace(' ', '-') }}">{{ city.title() }}</a></p>
+    {% endfor %}
   </div>
-  </body>
-</html>
+
+{% endblock %}
