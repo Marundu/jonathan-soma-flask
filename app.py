@@ -1,8 +1,4 @@
-from flask import (
-    Flask,
-    render_template,
-)
-
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -20,6 +16,8 @@ class School(db.Model):
     LOC_CODE=db.Column(db.Text, primary_key=True)
 
 
+# routes
+
 @app.route('/')
 def index():
     school_count=School.query.count()
@@ -28,9 +26,9 @@ def index():
 
 
 @app.route('/schools/<slug>')
-def detail(slug):
+def schools(slug):
     school=School.query.filter_by(LOC_CODE=slug).first()
-    return render_template('detail.html', school=school)
+    return render_template('schools.html', school=school)
 
 
 @app.route('/city/<cityname>')
@@ -61,6 +59,7 @@ def zip_list():
     zips=School.query.with_entities(School.ZIP).distinct().all()
     zips=[zipcode[0] for zipcode in zips]
     return render_template('zips.html', zips=zips)
+
 
 
 if __name__=='__main__':
