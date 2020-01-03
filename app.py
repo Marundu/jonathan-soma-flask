@@ -49,7 +49,10 @@ def zip(zipcode):
 @app.route('/city')
 def city_list():
     cities=School.query.with_entities(School.city).distinct().all()
-    cities=[city[0] for city in cities]
+    # convert all cities to title case
+    cities=[city[0].title() for city in cities]
+    # remove duplicates and sort
+    cities=sorted(list(set(cities)))
     return render_template('cities.html', count=len(cities), cities=cities)
 
 

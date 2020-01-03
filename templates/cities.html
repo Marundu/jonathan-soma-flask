@@ -16,7 +16,7 @@
     <div class="container">
       <p>
         {% for city in cities %}
-          <p><a href="/city/{{ city }}">{{ city.title() }}</a></p>
+          <p><a href="/city/{{ city.lower().replace(' ', '-') }}">{{ city.title() }}</a></p>
         {% endfor %}
       </p>
     </div>
