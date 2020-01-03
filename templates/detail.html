@@ -1,0 +1,24 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <title>School Page: {{ school.SCHOOLNAME }}</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Schools</a>
+    </nav>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">{{ school.SCHOOLNAME }}</h1>
+        <p class="lead">{{ school.address.title() }}, {{ school.city.title() }}</p>
+      </div>
+    </div>
+    <div class="container">
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+  </div>
+  </body>
+</html>

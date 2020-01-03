@@ -10,15 +10,15 @@
     </nav>
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-4">There are {{ count }} in New York City.</h1>
-        <p class="lead">Confusion is normal.</p>
+        <h1 class="display-4">There are {{ count }} schools in {{ location.title() }}.</h1>
       </div>
     </div>
     <div class="container">
-      <p>Keep going!</p>
+      <p>
         {% for school in schools %}
-          <p>{{ school.SCHOOLNAME }}</p>
+          <p><a href="/schools/{{ school.LOC_CODE }}">{{ school.SCHOOLNAME }}</a></p>
         {% endfor %}
+      </p>
     </div>
   </div>
   </body>

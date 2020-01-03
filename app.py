@@ -21,16 +21,36 @@ class School(db.Model):
 
 
 @app.route('/')
-def hello():
+def index():
     school_count=School.query.count()
-    zip_schools=School.query.filter_by(ZIP='10466').all()  
-    return render_template('index.html', count=school_count, schools=zip_schools)
+    zip_schools=School.query.all()  
+    return render_template('list.html', count=school_count, schools=zip_schools, location='New York City')
 
 
-@app.route('/about')
-def about():
-    print('The total number of schools is ', School.query.count())
-    return render_template('index.html')
+@app.route('/schools/<slug>')
+def detail(slug):
+    school=School.query.filter_by(LOC_CODE=slug).first()
+    return render_template('detail.html', school=school)
+
+
+@app.route('/city/<cityname>')
+def city(cityname):
+    cityname=cityname.replace('-', ' ')
+    schools=School.query.filter_by(city=cityname.upper()).all()
+    return render_template('city.html', schools=schools, count=len(schools), location=cityname)
+
+
+@app.route('/zip/<zipcode>')
+def zip(zipcode):
+    schools=School.query.filter_by(ZIP=zipcode).all()
+    return render_template('zip.html', schools=schools, count=len(schools), location=zipcode)
+
+
+@app.route('/city')
+def city_list():
+    cities=School.query.with_entities(School.city).distinct().all()
+    cities=[city[0] for city in cities]
+    return render_template('cities.html', count=len(cities), cities=cities)
 
 
 if __name__=='__main__':
