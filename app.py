@@ -56,5 +56,12 @@ def city_list():
     return render_template('cities.html', count=len(cities), cities=cities)
 
 
+@app.route('/zip')
+def zip_list():
+    zips=School.query.with_entities(School.ZIP).distinct().all()
+    zips=[zipcode[0] for zipcode in zips]
+    return render_template('zips.html', zips=zips)
+
+
 if __name__=='__main__':
     app.run(debug=True)
