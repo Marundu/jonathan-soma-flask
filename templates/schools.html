@@ -15,6 +15,36 @@
 {% block content %}
 
   <div class="container">
+  
+    <div id='map' style='width: 400px; height: 300px;'></div>
+      <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFydW5kdSIsImEiOiJjazYwcGRvcHgwOXF3M2xtcTh3aHB1MXpwIn0.E67GHr-vd_JEiSi-3_WfaQ';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11'
+        });
+        map.on('load', function() {
+          var geojsonData = {
+            "type": "FeatureCollection",
+            "features": [{
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [{{ school.longitude }}, {{ school.latitude }}]
+              }
+            }]
+          };
+          map.addLayer({
+            "id": "points",
+            "type": "circle",
+            "source": {
+              "type": "geojson",
+              "data": geojsonData
+            }
+          })
+        })
+      </script>
+
     <p></p>
     <p></p>
     <p></p>
