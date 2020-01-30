@@ -1,19 +1,7 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template
 
-
-app=Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///schools.db'
-db=SQLAlchemy(app)
-
-db.Model.metadata.reflect(db.engine)
-
-
-class School(db.Model):
-    __tablename__='schools'
-    __table_args__={'extend_existing': True}
-    LOC_CODE=db.Column(db.Text, primary_key=True)
+from app import app, db
+from app.models import School
 
 
 # routes
@@ -60,7 +48,3 @@ def zip_list():
     zips=[zipcode[0] for zipcode in zips]
     return render_template('zips.html', zips=zips)
 
-
-
-if __name__=='__main__':
-    app.run(debug=True)
