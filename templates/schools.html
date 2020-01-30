@@ -21,7 +21,7 @@
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFydW5kdSIsImEiOiJjazYwcGRvcHgwOXF3M2xtcTh3aHB1MXpwIn0.E67GHr-vd_JEiSi-3_WfaQ';
         var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11'
+        style: 'mapbox://styles/mapbox/streets-v11',
         center: [-74, 40.71],
         zoom: 9
         });
@@ -42,6 +42,12 @@
             "source": {
               "type": "geojson",
               "data": geojsonData
+            },
+          "paint": {
+            "circle-radius": 5,
+            "circle-color": "#ECCB2F",
+            "circle-stroke-width": 1,
+            "circle-stroke-color": "black"
             }
           })
         })
