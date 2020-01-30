@@ -22,6 +22,8 @@
         var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11'
+        center: [-74, 40.71],
+        zoom: 9
         });
         map.on('load', function() {
           var geojsonData = {
